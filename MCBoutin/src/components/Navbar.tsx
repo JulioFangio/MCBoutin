@@ -1,4 +1,4 @@
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Book, BookCheck, BookOpenCheck, Handshake, Menu, Recycle, Sunset, Trees, Zap } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 
 import {
@@ -23,6 +23,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Font } from "astro:assets";
 
 interface MenuItem {
   title: string;
@@ -47,90 +48,36 @@ const Navbar1 = ({
     url: "https://www.shadcnblocks.com",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "Marie - Christine Boutin",
   },
   menu = [
-    { title: "Home", url: "#" },
+    { title: "Accueil", url: "#" },
     {
-      title: "Products",
+      title: "Activités",
       url: "#",
       items: [
         {
-          title: "Blog",
-          description: "The latest industry news, updates, and info",
-          icon: <Book className="size-5 shrink-0" />,
+          title: "Thérapie",
+          description: "Thérapie individuelle et familiale / Thérapie relationnelle",
+          icon: <Handshake className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Company",
-          description: "Our mission is to innovate and empower the world",
-          icon: <Trees className="size-5 shrink-0" />,
+          title: "Accompagnement",
+          description: "Accompagnement dans les transitions et changement de cycle de vie",
+          icon: <Recycle className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Careers",
-          description: "Browse job listing and discover our workspace",
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Support",
-          description:
-            "Get in touch with our support team or visit our community forums",
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Resources",
-      url: "#",
-      items: [
-        {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Status",
-          description: "Check the current status of our services and APIs",
-          icon: <Trees className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Terms of Service",
-          description: "Our terms and conditions for using our services",
-          icon: <Book className="size-5 shrink-0" />,
+          title: "Coaching",
+          description: "Coaching en orientation et en reconversion profesionnelle",
+          icon: <BookOpenCheck className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
   ],
 }: Navbar1Props) => {
-  const [showContact, setShowContact] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("contact@monsite.com").then(() => {
-      setCopied(true);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = window.setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
-  }, []);
   return (
     <section className="py-4 w-full bg-white shadow-md">
       {/* Le fond s'étend maintenant à 100% de l’écran */}
@@ -141,7 +88,7 @@ const Navbar1 = ({
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
+              <span className="text-lg font-medium tracking-tighter">
                 {logo.title}
               </span>
             </a>
@@ -153,13 +100,11 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="relative group inline-block">
+          <div className="text-sm font-medium font-gotham relative group inline-block">
             <Button variant="secondary" size="sm">
               Me contacter
             </Button>
-            <div
-              className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md
-                         group-hover:flex hover:flex focus-within:flex text-sm text-gray-700">
+            <div className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md group-hover:flex hover:flex focus-within:flex text-gray-700">
               <span>Tél : 06 12 34 56 78</span>
               <span>Email : contact@monsite.com</span>
             </div>
@@ -172,6 +117,9 @@ const Navbar1 = ({
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                <span className="text-lg font-medium tracking-tighter">
+                  {logo.title}
+                </span>
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -197,9 +145,9 @@ const Navbar1 = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-2 rounded-md bg-gray-100 p-4 text-sm text-gray-800">
-                    <div className="font-semibold">Me contacter</div>
-                    <div>Tél: 06 12 34 56 78</div>
-                    <div>Email: contact@monsite.com</div>
+                    <div className="text-sm font-medium font-gotham">Me contacter</div>
+                    <div className="text-sm font-medium font-gotham">Tél: 06 12 34 56 78</div>
+                    <div className="text-sm font-medium font-gotham">Email: contact@monsite.com</div>
                   </div>
                 </div>
               </SheetContent>
@@ -215,7 +163,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+        <NavigationMenuTrigger className="font-semibold">{item.title}</NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
           {item.items.map((subItem) => (
             <NavigationMenuLink asChild key={subItem.title} className="w-80">
@@ -231,13 +179,14 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-semibold transition-colors hover:bg-muted hover:text-accent-foreground"
       >
         {item.title}
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
 };
+
 
 const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
