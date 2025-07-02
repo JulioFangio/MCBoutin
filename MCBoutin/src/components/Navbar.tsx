@@ -100,13 +100,13 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="text-sm font-medium font-gotham relative group inline-block">
+          <div className="text-sm font-medium relative group inline-block">
             <Button variant="secondary" size="sm">
               Me contacter
             </Button>
             <div className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md group-hover:flex hover:flex focus-within:flex text-gray-700">
-              <span className="font-semibold font-gotham">Tél : 06 12 34 56 78</span>
-              <span className="font-semibold font-gotham">Email : contact@monsite.com</span>
+              <span className="font-semibold">Tél : 06 12 34 56 78</span>
+              <span className="font-semibold">Email : contact@monsite.com</span>
             </div>
           </div>
         </nav>
@@ -145,9 +145,9 @@ const Navbar1 = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-2 rounded-md bg-gray-100 p-4 text-sm text-gray-800">
-                    <div className="text-sm font-medium font-gotham">Me contacter</div>
-                    <div className="text-sm font-medium font-gotham">Tél: 06 12 34 56 78</div>
-                    <div className="text-sm font-medium font-gotham">Email: contact@monsite.com</div>
+                    <div className="text-sm font-medium">Me contacter</div>
+                    <div className="text-sm font-medium">Tél: 06 12 34 56 78</div>
+                    <div className="text-sm font-medium">Email: contact@monsite.com</div>
                   </div>
                 </div>
               </SheetContent>

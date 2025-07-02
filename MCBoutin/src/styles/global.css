@@ -41,22 +41,6 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/GothamPro.woff2') format('woff2'),
-       url('/fonts/GothamPro.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-html, body, .font-gotham {
-  font-family: 'Gotham', sans-serif !important;
-  letter-spacing: 0.05em;
-  -webkit-font-feature-settings: "kern" 0;
-  font-feature-settings: "kern" 0;
-}
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
