@@ -1,5 +1,5 @@
-
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   Accordion,
@@ -40,16 +40,6 @@ interface Navbar1Props {
     title: string;
   };
   menu?: MenuItem[];
-  auth?: {
-    login: {
-      title: string;
-      url: string;
-    };
-    signup: {
-      title: string;
-      url: string;
-    };
-  };
 }
 
 const Navbar1 = ({
@@ -122,23 +112,29 @@ const Navbar1 = ({
         },
       ],
     },
-    {
-      title: "Pricing",
-      url: "#",
-    },
-    {
-      title: "Blog",
-      url: "#",
-    },
   ],
-  auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
-  },
 }: Navbar1Props) => {
+  const [showContact, setShowContact] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("contact@monsite.com").then(() => {
+      setCopied(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = window.setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  };
+  }, []);
   return (
-    <section className="py-4">
-      <div className="container">
+    <section className="py-4 w-full bg-white shadow-md">
+      {/* Le fond s'étend maintenant à 100% de l’écran */}
+      <div className="max-w-screen-2xl mx-auto px-4">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -157,13 +153,16 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
+          <div className="relative group inline-block">
+            <Button variant="secondary" size="sm">
+              Me contacter
             </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
-            </Button>
+            <div
+              className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md
+                         group-hover:flex hover:flex focus-within:flex text-sm text-gray-700">
+              <span>Tél : 06 12 34 56 78</span>
+              <span>Email : contact@monsite.com</span>
+            </div>
           </div>
         </nav>
 
@@ -197,13 +196,10 @@ const Navbar1 = ({
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
+                  <div className="flex flex-col gap-2 rounded-md bg-gray-100 p-4 text-sm text-gray-800">
+                    <div className="font-semibold">Me contacter</div>
+                    <div>Tél: 06 12 34 56 78</div>
+                    <div>Email: contact@monsite.com</div>
                   </div>
                 </div>
               </SheetContent>
