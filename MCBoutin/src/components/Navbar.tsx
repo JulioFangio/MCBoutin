@@ -88,7 +88,7 @@ const Navbar1 = ({
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-medium tracking-tighter">
+              <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
               </span>
             </a>
@@ -105,8 +105,8 @@ const Navbar1 = ({
               Me contacter
             </Button>
             <div className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md group-hover:flex hover:flex focus-within:flex text-gray-700">
-              <span>Tél : 06 12 34 56 78</span>
-              <span>Email : contact@monsite.com</span>
+              <span className="font-semibold font-gotham">Tél : 06 12 34 56 78</span>
+              <span className="font-semibold font-gotham">Email : contact@monsite.com</span>
             </div>
           </div>
         </nav>
