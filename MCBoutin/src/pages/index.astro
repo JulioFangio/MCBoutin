@@ -1,29 +1,8 @@
 ---
-import '../styles/global.css';
-
-//Composants
-import { Navbar1 } from '../components/Navbar.tsx';
+import BaseLayout from '../layouts/main.astro';
 import { WhoAmI } from '@/components/WhoAmI';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-	<body class="m-0 p-0">
-	  <header class="w-full">
-	    <Navbar1 client:load/>
-	  </header>
-	  <main class="w-full">
-	    <WhoAmI />
-	  </main>
-	</body>
-</html>
+<BaseLayout title="Accueil">
+  <WhoAmI />
+</BaseLayout>

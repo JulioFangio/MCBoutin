@@ -1,16 +1,27 @@
 ---
-import '../styles/global.css';
-const { content } = Astro.props;
+import { Navbar1 } from '../components/Navbar.tsx';
+
+const { title = "Mon site Astro" } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="m-0 p-0">
+    <header class="w-full">
+      <Navbar1 client:load />
+    </header>
+
+    <main class="w-full">
+      <slot />
+    </main>
+
+    <footer class="w-full bg-gray-900 text-white text-center py-6 mt-12">
+      © {new Date().getFullYear()} Mon site Astro. Tous droits réservés.
+    </footer>
+  </body>
 </html>
