@@ -79,7 +79,7 @@ const Navbar1 = ({
   ],
 }: Navbar1Props) => {
   return (
-    <section className="py-4 w-full bg-white shadow-md">
+    <section className="fixed py-4 w-full bg-white shadow-md">
       {/* Le fond s'étend maintenant à 100% de l’écran */}
       <div className="max-w-screen-2xl mx-auto px-4">
         {/* Desktop Menu */}

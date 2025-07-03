@@ -3,6 +3,7 @@ import '../styles/global.css';
 
 //Composants
 import { Navbar1 } from '../components/Navbar.tsx';
+import { WhoAmI } from '@/components/WhoAmI';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -21,5 +22,8 @@ import { Navbar1 } from '../components/Navbar.tsx';
 	  <header class="w-full">
 	    <Navbar1 client:load/>
 	  </header>
+	  <main class="w-full">
+	    <WhoAmI />
+	  </main>
 	</body>
 </html>

@@ -123,3 +123,39 @@ hover:flex
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-scroll {
+  animation: scroll 60s linear infinite;
+}
+@media (min-width: 768px) {
+  .animate-scroll {
+    animation-duration: 50s;
+  }
+}
+.animate-paused:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 1600px) {
+  .whoami-text p {
+    font-size: 0.95rem !important; 
+    line-height: 1.3 !important;
+  }
+
+  .whoami-title {
+    font-size: 1.9rem !important;
+  }
+
+  .whoami-image {
+    max-height: 350px !important;
+    width: auto !important;
+  }
+}
