@@ -23,7 +23,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Font } from "astro:assets";
 
 interface MenuItem {
   title: string;

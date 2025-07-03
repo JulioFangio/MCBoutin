@@ -9,7 +9,7 @@ interface WhoAmIProps {
 
 const WhoAmI = ({
   title = "Mon parcours",
-  imageSrc = "../../public/pexels-alex-green-5699431.jpg",
+  imageSrc = "/pexels-alex-green-5699431.jpg",
   imageAlt = "placeholder hero",
 }: WhoAmIProps) => {
   return (

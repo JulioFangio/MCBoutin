@@ -1,27 +1,36 @@
 ---
 import { Navbar1 } from '../components/Navbar.tsx';
+import IntroScreen from '../components/IntroScreen';
 
 const { title = "Mon site Astro" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="m-0 p-0">
-    <header class="w-full">
+  <body class="m-0 p-0 relative">
+    
+    <!-- IntroScreen React fullscreen overlay -->
+    <IntroScreen client:load />
+
+    <!-- Navbar -->
+    <header class="w-full relative z-49">
       <Navbar1 client:load />
     </header>
 
-    <main class="w-full">
+    <!-- Main content -->
+    <main class="w-full relative z-10">
       <slot />
     </main>
 
-    <footer class="w-full bg-gray-900 text-white text-center py-6 mt-12">
+    <!-- Footer -->
+    <footer class="w-full bg-gray-900 text-white text-center py-6 mt-12 relative z-10">
       © {new Date().getFullYear()} Mon site Astro. Tous droits réservés.
     </footer>
+
   </body>
 </html>
