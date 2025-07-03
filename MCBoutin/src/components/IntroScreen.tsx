@@ -3,16 +3,19 @@ import { useState, useEffect, useRef } from "react";
 export default function IntroScreen() {
   const [visible, setVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
-  const hasFaded = useRef(false); // pour bloquer le fade multiple
+  const hasFaded = useRef(false);
+  const scrollResetInterval = useRef(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     function onScroll() {
-      if (window.scrollY > 0 && !hasFaded.current) {
-        hasFaded.current = true;  // bloquer fade futur
+      if (!hasFaded.current && window.scrollY > 0) {
+        hasFaded.current = true;
         setIsFading(true);
-        window.scrollTo(0, 0);
+
+        // Pendant le fade, on reset le scroll à 0 toutes les 50ms pour éviter le "jump"
+        scrollResetInterval.current = setInterval(() => {
+          window.scrollTo(0, 0);
+        }, 50);
       }
     }
 
@@ -20,16 +23,22 @@ export default function IntroScreen() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      document.body.style.overflow = "";
+      if (scrollResetInterval.current) {
+        clearInterval(scrollResetInterval.current);
+      }
     };
-  }, []); // une fois au montage uniquement
+  }, []);
 
   useEffect(() => {
     if (isFading) {
       const timeout = setTimeout(() => {
         setVisible(false);
-        document.body.style.overflow = "";
-      }, 3000); // 3 secondes
+        if (scrollResetInterval.current) {
+          clearInterval(scrollResetInterval.current);
+          scrollResetInterval.current = null;
+        }
+        window.scrollTo(0, 0); // Assure la page d'accueil reste en haut
+      }, 3000); // durée du fade
 
       return () => clearTimeout(timeout);
     }
@@ -39,7 +48,7 @@ export default function IntroScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black transition-opacity duration-[3000ms] ${
+      className={`fixed inset-0 z-50 bg-black transition-opacity duration-[1800ms] ${
         isFading ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
@@ -52,7 +61,6 @@ export default function IntroScreen() {
         className="absolute top-0 left-0 w-full h-full object-cover"
         draggable={false}
       />
-      {/* Flèches gauche & droite + texte */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4 text-black z-10">
         <svg
           className="w-8 h-8 animate-bounce"
