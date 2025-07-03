@@ -4,7 +4,7 @@ export default function IntroScreen() {
   const [visible, setVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
   const hasFaded = useRef(false);
-  const scrollResetInterval = useRef(null);
+  const scrollResetInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     function onScroll() {
@@ -12,7 +12,6 @@ export default function IntroScreen() {
         hasFaded.current = true;
         setIsFading(true);
 
-        // Pendant le fade, on reset le scroll à 0 toutes les 50ms pour éviter le "jump"
         scrollResetInterval.current = setInterval(() => {
           window.scrollTo(0, 0);
         }, 50);
