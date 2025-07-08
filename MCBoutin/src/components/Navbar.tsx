@@ -1,5 +1,8 @@
-import { Book, BookCheck, BookOpenCheck, Handshake, Menu, Recycle, Sunset, Trees, Zap } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import {
+  Menu,
+} from "lucide-react";
 
 import {
   Accordion,
@@ -53,10 +56,36 @@ const Navbar1 = ({
     { title: "Accueil", url: "#whoami" },
     {
       title: "Activités",
-      url: "#activities"
+      url: "#activities",
     },
   ],
 }: Navbar1Props) => {
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
   return (
     <section className="fixed py-4 w-full bg-transparent z-50">
       <div className="max-w-screen-2xl mx-auto px-4">
@@ -73,16 +102,16 @@ const Navbar1 = ({
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
+                  {menu.map((item) => renderMenuItem(item, activeSection))}
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
           </div>
           <div className="text-sm font-medium relative group inline-block">
-            <Button variant="secondary" size="sm">
+            <button className="text-sm font-semibold text-black hover:text-[#f8c8d0] transition-colors">
               Me contacter
-            </Button>
-            <div className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md group-hover:flex hover:flex focus-within:flex text-gray-700">
+            </button>
+            <div className="absolute right-0 top-full z-50 hidden w-max flex-col rounded-md bg-white p-3 shadow-md group-hover:flex text-gray-700">
               <span className="font-semibold">Tél : 06 12 34 56 78</span>
               <span className="font-semibold">Email : contact@monsite.com</span>
             </div>
@@ -119,13 +148,17 @@ const Navbar1 = ({
                     collapsible
                     className="flex w-full flex-col gap-4"
                   >
-                    {menu.map((item) => renderMobileMenuItem(item))}
+                    {menu.map((item) => renderMobileMenuItem(item, activeSection))}
                   </Accordion>
 
                   <div className="flex flex-col gap-2 rounded-md bg-gray-100 p-4 text-sm text-gray-800">
                     <div className="text-sm font-medium">Me contacter</div>
-                    <div className="text-sm font-medium">Tél: 06 12 34 56 78</div>
-                    <div className="text-sm font-medium">Email: contact@monsite.com</div>
+                    <div className="text-sm font-medium">
+                      Tél: 06 12 34 56 78
+                    </div>
+                    <div className="text-sm font-medium">
+                      Email: contact@monsite.com
+                    </div>
                   </div>
                 </div>
               </SheetContent>
@@ -133,30 +166,32 @@ const Navbar1 = ({
           </div>
         </div>
       </div>
-<div className="w-full flex justify-center mt-2">
-  <img
-    src="/trait1_rose.png"
-    alt="Ligne de séparation"
-    style={{
-      height: "10px",
-      width: "auto",
-      maxWidth: "auto", // adapte selon la taille que tu veux
-    }}
-  />
-</div>
+      <div className="w-full flex justify-center mt-2">
+        <img
+          src="/trait1_rose.png"
+          alt="Ligne de séparation"
+          style={{
+            height: "10px",
+            width: "auto",
+            maxWidth: "auto",
+          }}
+        />
+      </div>
     </section>
   );
 };
 
-const renderMenuItem = (item: MenuItem) => {
+const renderMenuItem = (item: MenuItem, activeSection: string) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className="font-semibold">{item.title}</NavigationMenuTrigger>
+        <NavigationMenuTrigger className="font-semibold">
+          {item.title}
+        </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
           {item.items.map((subItem) => (
             <NavigationMenuLink asChild key={subItem.title} className="w-80">
-              <SubMenuLink item={subItem} />
+              <SubMenuLink item={subItem} activeSection={activeSection} />
             </NavigationMenuLink>
           ))}
         </NavigationMenuContent>
@@ -164,19 +199,29 @@ const renderMenuItem = (item: MenuItem) => {
     );
   }
 
+  // is this item active ?
+  const isActive = item.url === `#${activeSection}`;
+
   return (
     <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
+      <a
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-semibold transition-colors hover:bg-muted hover:text-accent-foreground"
+        className={`text-sm font-semibold px-2 transition-colors ${
+          isActive ? "text-[#f8c8d0]" : "text-black hover:text-[#f8c8d0]"
+        }`}
+        style={{
+          background: "transparent",
+          border: "none",
+          boxShadow: "none",
+        }}
       >
         {item.title}
-      </NavigationMenuLink>
+      </a>
     </NavigationMenuItem>
   );
 };
 
-const renderMobileMenuItem = (item: MenuItem) => {
+const renderMobileMenuItem = (item: MenuItem, activeSection: string) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
@@ -185,24 +230,49 @@ const renderMobileMenuItem = (item: MenuItem) => {
         </AccordionTrigger>
         <AccordionContent className="mt-2">
           {item.items.map((subItem) => (
-            <SubMenuLink key={subItem.title} item={subItem} />
+            <SubMenuLink key={subItem.title} item={subItem} activeSection={activeSection} />
           ))}
         </AccordionContent>
       </AccordionItem>
     );
   }
 
+  const isActive = item.url === `#${activeSection}`;
+
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <a
+      key={item.title}
+      href={item.url}
+      className={`text-md font-semibold px-2 transition-colors ${
+        isActive ? "text-[#f8c8d0]" : "text-black hover:text-[#f8c8d0]"
+      }`}
+      style={{
+        background: "transparent",
+        border: "none",
+        padding: 0,
+      }}
+    >
       {item.title}
     </a>
   );
 };
 
-const SubMenuLink = ({ item }: { item: MenuItem }) => {
+const SubMenuLink = ({
+  item,
+  activeSection,
+}: {
+  item: MenuItem;
+  activeSection?: string;
+}) => {
+  const isActive = item.url === `#${activeSection}`;
+
   return (
     <a
-      className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
+      className={`flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none ${
+        isActive
+          ? "bg-muted text-[#f8c8d0]"
+          : "hover:bg-muted hover:text-accent-foreground text-foreground"
+      }`}
       href={item.url}
     >
       <div className="text-foreground">{item.icon}</div>
