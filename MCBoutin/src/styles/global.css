@@ -159,3 +159,7 @@ hover:flex
     width: auto !important;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,5 +1,5 @@
 import { Book, BookCheck, BookOpenCheck, Handshake, Menu, Recycle, Sunset, Trees, Zap } from "lucide-react";
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 
 import {
   Accordion,
@@ -50,36 +50,15 @@ const Navbar1 = ({
     title: "Marie - Christine Boutin",
   },
   menu = [
-    { title: "Accueil", url: "#" },
+    { title: "Accueil", url: "#whoami" },
     {
       title: "Activités",
-      url: "#",
-      items: [
-        {
-          title: "Thérapie",
-          description: "Thérapie individuelle et familiale / Thérapie relationnelle",
-          icon: <Handshake className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Accompagnement",
-          description: "Accompagnement dans les transitions et changement de cycle de vie",
-          icon: <Recycle className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Coaching",
-          description: "Coaching en orientation et en reconversion profesionnelle",
-          icon: <BookOpenCheck className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
+      url: "#activities"
     },
   ],
 }: Navbar1Props) => {
   return (
-    <section className="fixed py-4 w-full bg-white shadow-md">
-      {/* Le fond s'étend maintenant à 100% de l’écran */}
+    <section className="fixed py-4 w-full bg-transparent z-50">
       <div className="max-w-screen-2xl mx-auto px-4">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
@@ -116,9 +95,9 @@ const Navbar1 = ({
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img src={logo.src} className="max-h-8" alt={logo.alt} />
-                <span className="text-lg font-medium tracking-tighter">
-                  {logo.title}
-                </span>
+              <span className="text-lg font-medium tracking-tighter">
+                {logo.title}
+              </span>
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -154,6 +133,17 @@ const Navbar1 = ({
           </div>
         </div>
       </div>
+<div className="w-full flex justify-center mt-2">
+  <img
+    src="/trait1_rose.png"
+    alt="Ligne de séparation"
+    style={{
+      height: "10px",
+      width: "auto",
+      maxWidth: "auto", // adapte selon la taille que tu veux
+    }}
+  />
+</div>
     </section>
   );
 };
@@ -185,7 +175,6 @@ const renderMenuItem = (item: MenuItem) => {
     </NavigationMenuItem>
   );
 };
-
 
 const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {

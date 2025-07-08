@@ -13,7 +13,7 @@ const WhoAmI = ({
   imageAlt = "placeholder hero",
 }: WhoAmIProps) => {
   return (
-    <section className="pt-30 pb-20">
+    <section id="whoami" className="pt-30 pb-20">
       <div
         className="
           mx-auto
@@ -30,36 +30,30 @@ const WhoAmI = ({
           2xl:max-w-[100rem]
         "
       >
-        {/* Titre */}
-        <h1 className="whoami-title mb-12 text-3xl sm:text-4xl font-semibold text-center lg:text-left">
-          {title}
-        </h1>
-
-        {/* Grille alignée avec espacement horizontal accru */}
-        <div className="grid gap-y-8 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-28 lg:items-center">
-          {/* Texte */}
-          <div className="text-muted-foreground whoami-text text-justify text-sm sm:text-base leading-relaxed space-y-4">
-            <p>
-              J’ai débuté en 2003 en tant que <strong>Graphologue</strong>, accompagnant les jeunes à leur projet professionnel avec l’analyse graphologique caractérologique comme outil principal.
-            </p>
-            <p>
-              Au fil du temps, l’expérience et les formations ont enrichi mon approche puis changé ma pratique.
-            </p>
-            <p>
-              Aujourd’hui, l’accompagnement se fait principalement en <strong>coaching</strong> et/ou en <strong>thérapie</strong>, car il favorise une meilleure compréhension de soi avec la considération émotionnelle. Il motive les changements et les réalisations, permet la récolte des petites victoires sur soi et des avancées concrètes.
-            </p>
-            <p>
-              Cela au profit du <strong>sens</strong> trouvé à son parcours, personnel et professionnel. Chaque parcours est unique et mérite d’être envisagé avec <strong>authenticité</strong> et <strong>audace</strong>.
-            </p>
-            <p>
-              Que vous soyez en pleine réflexion, à un tournant de votre vie ou en quête d’un nouvel équilibre, je vous ouvre un espace d’écoute et de changement.
-            </p>
-            <p>
-              Ensemble, nous clarifierons vos aspirations, ouvrirons le champ des possibles pour construire un avenir qui vous ressemble.
-            </p>
+        {/* Grille avec Titre + Texte + Image */}
+        <div className="grid gap-y-8 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-28 lg:items-start">
+          {/* Colonne texte */}
+          <div className="space-y-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <h1 className="whoami-title text-3xl sm:text-4xl font-semibold text-center lg:text-left">
+              {title}
+            </h1>
+            <div className="text-muted-foreground whoami-text text-justify text-sm sm:text-base leading-relaxed space-y-4">
+              <p>
+                Installée depuis 2003, j’accompagne celles et ceux qui traversent des périodes de transition, de questionnement ou de bouleversement, dans leur vie personnelle, relationnelle ou professionnelle.
+              </p>
+              <p>
+                Mon parcours s’est construit à la croisée de plusieurs univers et formations : la graphologie, la graphothérapie, le coaching d'orientation, le coaching stratégique et la thérapie systémique.
+              </p>
+              <p>
+                Je crois profondément que chacun peut retrouver l’accès à ses ressources intérieures, renouer avec la confiance, restaurer les liens essentiels, et oser une transformation respectueuse de soi.
+              </p>
+              <p>
+                Au cœur de ma démarche : l’écoute attentive, l’accueil des émotions, la parole libérée et le dialogue comme leviers de transformation.
+              </p>
+            </div>
           </div>
 
-          {/* Image centrée */}
+          {/* Colonne image */}
           <div className="flex justify-center items-center">
             <img
               src={imageSrc}
