@@ -145,9 +145,12 @@ hover:flex
 }
 
 @media (max-width: 1600px) {
-  .whoami-text p {
-    font-size: 0.95rem !important; 
+  .whoami-text p,
+  .whoami-text li {
+    font-size: 0.95rem !important;
     line-height: 1.3 !important;
+    color: black !important;
+    text-align: justify !important;
   }
 
   .whoami-title {

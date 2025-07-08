@@ -37,7 +37,7 @@ const WhoAmI = ({
             <h1 className="whoami-title text-3xl sm:text-4xl font-semibold text-center lg:text-left">
               {title}
             </h1>
-            <div className="text-muted-foreground whoami-text text-justify text-sm sm:text-base leading-relaxed space-y-4">
+            <div className="whoami-text text-sm sm:text-base leading-relaxed space-y-4">
               <p>
                 Installée depuis 2003, j’accompagne celles et ceux qui traversent des périodes de transition, de questionnement ou de bouleversement, dans leur vie personnelle, relationnelle ou professionnelle.
               </p>
