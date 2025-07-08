@@ -8,7 +8,7 @@ interface WhoAmIProps {
 }
 
 const WhoAmI = ({
-  title = "Mon parcours",
+  title = "Histoire",
   imageSrc = "/pexels-alex-green-5699431.jpg",
   imageAlt = "placeholder hero",
 }: WhoAmIProps) => {

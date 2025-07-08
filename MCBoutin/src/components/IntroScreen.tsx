@@ -52,7 +52,7 @@ export default function IntroScreen() {
       }`}
     >
       <video
-        src="/Messenger_creation_7FACF982-9B84-40AA-B2C3-96DEC747E043.mp4"
+        src="/GIFMCB.mp4"
         autoPlay
         loop
         muted
