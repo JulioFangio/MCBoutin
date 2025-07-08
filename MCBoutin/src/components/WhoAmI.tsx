@@ -1,4 +1,5 @@
 import Keywords from "./Keywords";
+
 import "../styles/global.css";
 
 interface WhoAmIProps {
@@ -13,7 +14,7 @@ const WhoAmI = ({
   imageAlt = "placeholder hero",
 }: WhoAmIProps) => {
   return (
-    <section id="whoami" className="pt-30 pb-20">
+    <section id="acceuil" className="pt-30 pb-20">
       <div
         className="
           mx-auto
@@ -58,6 +59,8 @@ const WhoAmI = ({
             <img
               src={imageSrc}
               alt={imageAlt}
+              loading="lazy"
+              decoding="async"
               className="whoami-image w-full max-w-md md:max-w-lg lg:max-w-full max-h-[440px] object-cover rounded-md"
             />
           </div>

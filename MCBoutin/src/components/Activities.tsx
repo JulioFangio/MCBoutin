@@ -78,56 +78,54 @@ const Activities = ({
                         </p>
                     </div>
                     <div className="whoami-text text-sm sm:text-base leading-relaxed space-y-4">
-                    <p className="font-semibold">Mon approche est intégrative et permet de :</p>
-                    
-                    <ul className="list-disc list-inside marker:text-current marker:text-sm space-y-2">
-                        <li>Explorer les dynamiques relationnelles, familiales, professionnelles</li>
-                        <li>Accueillir les grandes questions de sens, de valeurs et de choix</li>
-                        <li>Accueillir les émotions, s'en servir et retrouver du mouvement</li>
-                        <li>Comprendre les héritages familiaux, les loyautés invisibles, les transmissions</li>
-                        <li>Clarifier les enjeux, poser les objectifs et agir avec justesse</li>
-                    </ul>
+                        <p className="font-semibold">Mon approche est intégrative et permet de :</p>
+
+                        <ul className="list-disc list-inside marker:text-current marker:text-sm space-y-2">
+                            <li>Explorer les dynamiques relationnelles, familiales, professionnelles</li>
+                            <li>Accueillir les grandes questions de sens, de valeurs et de choix</li>
+                            <li>Accueillir les émotions, s'en servir et retrouver du mouvement</li>
+                            <li>Comprendre les héritages familiaux, les loyautés invisibles, les transmissions</li>
+                            <li>Clarifier les enjeux, poser les objectifs et agir avec justesse</li>
+                        </ul>
                     </div>
                 </div>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {posts.map((post) => (
-                        <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto] pt-0">
-                            <div className="aspect-16/9 w-full">
-                                <a
-                                    href={post.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="transition-opacity duration-200 fade-in hover:opacity-70"
-                                >
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="h-full w-full object-cover object-center"
-                                    />
-                                </a>
-                            </div>
-                            <CardHeader>
-                                <h3 className="text-lg font-semibold hover:underline md:text-xl">
-                                    <a href={post.url} target="_blank" rel="noopener noreferrer">
-                                        {post.title}
+                        <Card key={post.id} className="relative overflow-hidden h-[400px] text-white">
+                            {/* Image en background */}
+                            <div
+                                className="absolute inset-0 bg-cover bg-center"
+                                style={{ backgroundImage: `url(${post.image})` }}
+                            />
+
+                            {/* Contenu principal */}
+                            <div className="relative z-10 flex flex-col justify-end h-full">
+                                <CardHeader className="px-6 pb-2">
+                                    <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                                        <a href={post.url} target="_blank" rel="noopener noreferrer">
+                                            {post.title}
+                                        </a>
+                                    </h3>
+                                </CardHeader>
+
+                                <CardContent className="pb-2">
+                                    <p className="text-sm">{post.summary}</p>
+                                </CardContent>
+
+                                <CardFooter className="pt-2">
+                                    <a
+                                        href={post.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center text-white hover:underline"
+                                    >
+                                        Lire plus
+                                        <ArrowRight className="ml-2 size-4" />
                                     </a>
-                                </h3>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="">{post.summary}</p>
-                            </CardContent>
-                            <CardFooter>
-                                <a
-                                    href={post.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center text-foreground hover:underline"
-                                >
-                                    Read more
-                                    <ArrowRight className="ml-2 size-4" />
-                                </a>
-                            </CardFooter>
+                                </CardFooter>
+                            </div>
                         </Card>
+
                     ))}
                 </div>
             </div>

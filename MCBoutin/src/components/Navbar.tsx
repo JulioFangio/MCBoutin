@@ -41,7 +41,7 @@ const Navbar1 = ({
     title: "Marie - Christine Boutin",
   },
   menu = [
-    { title: "Accueil", url: "#whoami" },
+    { title: "Accueil", url: "#acceuil" },
     { title: "Activités", url: "#activities" },
     { title: "Me contacter", url: "#" },
   ],
