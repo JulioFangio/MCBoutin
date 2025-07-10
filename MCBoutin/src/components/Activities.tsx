@@ -3,7 +3,6 @@ import "../styles/global.css";
 
 import {
     Card,
-    CardContent,
     CardFooter,
     CardHeader,
 } from "@/components/ui/card";
@@ -11,11 +10,7 @@ import {
 interface Post {
     id: string;
     title: string;
-    summary: string;
-    label: string;
-    author: string;
-    published: string;
-    url: string;
+    slogan: string;
     image: string;
 }
 
@@ -29,32 +24,20 @@ const Activities = ({
     posts = [
         {
             id: "post-1",
-            title: "Accompagnement individuel",
-            summary: "Un espace de parole bienveillant pour explorer vos questionnements personnels et retrouver votre chemin.",
-            label: "Individuel",
-            author: "Marie-Christine Boutin",
-            published: "1 Jan 2024",
-            url: "#contact",
+            title: "Thérapie individuelle, relationnelle et familiale",
+            slogan: "\"Du cœur à la parole.\"",
             image: "/forme1-min.png",
         },
         {
             id: "post-2",
-            title: "Thérapie familiale",
-            summary: "Accompagnement des familles pour améliorer la communication et résoudre les conflits relationnels.",
-            label: "Familial",
-            author: "Marie-Christine Boutin",
-            published: "1 Jan 2024",
-            url: "#contact",
+            title: "Transition et changement de cycle de vie",
+            slogan: "\"Prendre le temps de son récit.\"",
             image: "/forme2-min.png",
         },
         {
             id: "post-3",
-            title: "Guidance parentale",
-            summary: "Soutien aux parents dans leur rôle éducatif et dans la compréhension des besoins de leurs enfants.",
-            label: "Parental",
-            author: "Marie-Christine Boutin",
-            published: "1 Jan 2024",
-            url: "#contact",
+            title: "Coaching d'orientation et de reconversion",
+            slogan: "\"Du cœur au changement ou retrouver le fil de soi\"",
             image: "/forme3-min.png",
         },
     ],
@@ -88,40 +71,39 @@ const Activities = ({
                 </div>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {posts.map((post) => (
-                        <Card key={post.id} className="relative overflow-hidden h-[400px] text-white border-0 shadow-lg">
+                        <Card key={post.id} className="relative overflow-hidden h-[400px] border-0 shadow-lg bg-transparent">
                             {/* Image en background */}
                             <div
-                                className="absolute inset-0 bg-cover bg-center bg-gray-300"
+                                className="absolute inset-0 bg-cover bg-center bg-transparent"
                                 style={{ backgroundImage: `url(${post.image})` }}
                             />
 
-                            {/* Overlay pour améliorer la lisibilité */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
                             {/* Contenu principal */}
-                            <div className="relative z-10 flex flex-col justify-end h-full">
-                                <CardHeader className="px-6 pb-2">
-                                    <h3 className="text-lg font-semibold hover:underline md:text-xl drop-shadow-lg">
-                                        <a href={post.url} target="_blank" rel="noopener noreferrer">
-                                            {post.title}
-                                        </a>
-                                    </h3>
-                                </CardHeader>
+                            <div className="relative z-10 flex flex-col justify-between h-full">
+                                {/* Titre et slogan au milieu */}
+                                <div className="flex-1 flex items-center justify-center">
+                                    <CardHeader className="px-6">
+                                        {/* Zone de fond pour le texte */}
+                                        <div className="bg-white/2 backdrop-blur-[1px] rounded-lg p-4 shadow-none">
+                                            <h3 className="whoami-text text-lg font-semibold md:text-xl mb-2 text-black" 
+                                                style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8)' }}>
+                                                {post.title}
+                                            </h3>
+                                            <p className="whoami-text text-sm italic text-black" 
+                                               style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8)' }}>
+                                                {post.slogan}
+                                            </p>
+                                        </div>
+                                    </CardHeader>
+                                </div>
 
-                                <CardContent className="pb-2">
-                                    <p className="text-sm drop-shadow-md">{post.summary}</p>
-                                </CardContent>
-
-                                <CardFooter className="pt-2">
-                                    <a
-                                        href={post.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center text-white hover:underline drop-shadow-md"
-                                    >
+                                {/* Lire plus en bas à gauche */}
+                                <CardFooter className="px-6 pb-6 justify-start">
+                                    <span className="whoami-text flex items-center text-black"
+                                          style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8)' }}>
                                         Lire plus
                                         <ArrowRight className="ml-2 size-4" />
-                                    </a>
+                                    </span>
                                 </CardFooter>
                             </div>
                         </Card>
