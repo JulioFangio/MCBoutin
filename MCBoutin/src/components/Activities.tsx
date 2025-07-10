@@ -97,10 +97,12 @@ const Activities = ({
 
     const handleCardClick = (cardId: string) => {
         setFlippedCards(prev => {
-            const newFlipped = prev.includes(cardId) 
-                ? prev.filter(id => id !== cardId)
-                : [...prev, cardId];
-            return newFlipped;
+            // Si la carte cliquée est déjà retournée, on la remet à l'endroit
+            if (prev.includes(cardId)) {
+                return prev.filter(id => id !== cardId);
+            }
+            // Sinon, on retourne uniquement cette carte (ferme toutes les autres)
+            return [cardId];
         });
     };
 
