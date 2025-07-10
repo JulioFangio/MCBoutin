@@ -29,36 +29,33 @@ const Activities = ({
     posts = [
         {
             id: "post-1",
-            title: "Getting Started with shadcn/ui Components",
-            summary:
-                "Learn how to quickly integrate and customize shadcn/ui components in your Next.js projects. We'll cover installation, theming, and best practices for building modern interfaces.",
-            label: "Tutorial",
-            author: "Sarah Chen",
+            title: "Accompagnement individuel",
+            summary: "Un espace de parole bienveillant pour explorer vos questionnements personnels et retrouver votre chemin.",
+            label: "Individuel",
+            author: "Marie-Christine Boutin",
             published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
+            url: "#contact",
+            image: "/forme1-min.png",
         },
         {
             id: "post-2",
-            title: "Building Accessible Web Applications",
-            summary:
-                "Explore how to create inclusive web experiences using shadcn/ui's accessible components. Discover practical tips for implementing ARIA labels, keyboard navigation, and semantic HTML.",
-            label: "Accessibility",
-            author: "Marcus Rodriguez",
+            title: "Thérapie familiale",
+            summary: "Accompagnement des familles pour améliorer la communication et résoudre les conflits relationnels.",
+            label: "Familial",
+            author: "Marie-Christine Boutin",
             published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
+            url: "#contact",
+            image: "/forme2-min.png",
         },
         {
             id: "post-3",
-            title: "Modern Design Systems with Tailwind CSS",
-            summary:
-                "Dive into creating scalable design systems using Tailwind CSS and shadcn/ui. Learn how to maintain consistency while building flexible and maintainable component libraries.",
-            label: "Design Systems",
-            author: "Emma Thompson",
+            title: "Guidance parentale",
+            summary: "Soutien aux parents dans leur rôle éducatif et dans la compréhension des besoins de leurs enfants.",
+            label: "Parental",
+            author: "Marie-Christine Boutin",
             published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
+            url: "#contact",
+            image: "/forme3-min.png",
         },
     ],
 }: ActivitiesProps) => {
@@ -91,17 +88,20 @@ const Activities = ({
                 </div>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {posts.map((post) => (
-                        <Card key={post.id} className="relative overflow-hidden h-[400px] text-white">
+                        <Card key={post.id} className="relative overflow-hidden h-[400px] text-white border-0 shadow-lg">
                             {/* Image en background */}
                             <div
-                                className="absolute inset-0 bg-cover bg-center"
+                                className="absolute inset-0 bg-cover bg-center bg-gray-300"
                                 style={{ backgroundImage: `url(${post.image})` }}
                             />
+
+                            {/* Overlay pour améliorer la lisibilité */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                             {/* Contenu principal */}
                             <div className="relative z-10 flex flex-col justify-end h-full">
                                 <CardHeader className="px-6 pb-2">
-                                    <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                                    <h3 className="text-lg font-semibold hover:underline md:text-xl drop-shadow-lg">
                                         <a href={post.url} target="_blank" rel="noopener noreferrer">
                                             {post.title}
                                         </a>
@@ -109,7 +109,7 @@ const Activities = ({
                                 </CardHeader>
 
                                 <CardContent className="pb-2">
-                                    <p className="text-sm">{post.summary}</p>
+                                    <p className="text-sm drop-shadow-md">{post.summary}</p>
                                 </CardContent>
 
                                 <CardFooter className="pt-2">
@@ -117,7 +117,7 @@ const Activities = ({
                                         href={post.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center text-white hover:underline"
+                                        className="flex items-center text-white hover:underline drop-shadow-md"
                                     >
                                         Lire plus
                                         <ArrowRight className="ml-2 size-4" />
