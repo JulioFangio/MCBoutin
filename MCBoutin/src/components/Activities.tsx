@@ -107,12 +107,12 @@ const Activities = ({
     };
 
     return (
-        <section id="activities" className="pt-20 pb-20">
-            <div className="container mx-auto flex flex-col gap-16 px-4 lg:px-16">
+        <section id="activities" className="pt-16 pb-20">
+            <div className="container mx-auto flex flex-col gap-8 px-4 lg:px-16">
                 <div className="text-center">
                     <h2 className="mb-6 text-2xl sm:text-3xl font-semibold">{heading}</h2>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
                     <div className="whoami-text text-sm sm:text-base leading-relaxed space-y-4">
                         <p>
                             Vous vivez une période de questionnement, de transition, de tension relationnelle ou de perte de repères ? Besoin d’y voir plus clair ? De remettre du sens à votre parcours ? De retrouver un élan personnel ou professionnel ?

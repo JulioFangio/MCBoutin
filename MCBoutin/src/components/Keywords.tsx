@@ -16,7 +16,7 @@ const keywords = [
 
 export default function Keywords() {
   return (
-    <section className="py-8 px-8 sm:px-16 max-w-full mt-17 bg-transparent">
+    <section className="py-8 px-8 sm:px-16 max-w-full mb-4 bg-transparent">
       {/* Titre */}
       <h2 className="mb-6 text-center text-2xl sm:text-3xl font-semibold text-balance text-[var(--white-icon)]">
         Quelques mots clés

@@ -43,6 +43,7 @@ const Navbar1 = ({
   menu = [
     { title: "Accueil", url: "#acceuil" },
     { title: "Activités", url: "#activities" },
+    { title: "Avis", url: "#avis" },
     { title: "Me contacter", url: "#" },
   ],
 }: Navbar1Props) => {
