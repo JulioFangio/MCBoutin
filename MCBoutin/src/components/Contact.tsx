@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 import "../styles/global.css";
 
 interface ContactProps {
@@ -72,7 +72,7 @@ const Contact = ({
     };
 
     return (
-        <section id="contact" className="pt-16 pb-20">
+        <section id="contact" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
             <div className="container mx-auto px-4 lg:px-16">
                 {/* Titre */}
                 <div className="text-center mb-12">

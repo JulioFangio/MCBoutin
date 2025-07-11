@@ -140,7 +140,7 @@ const Avis = ({
     };
 
     return (
-        <section id="avis" className="pt-16 pb-20">
+        <section id="avis" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
             <div className="container mx-auto flex flex-col gap-8 px-4 lg:px-16">
                 <div className="text-center">
                     <h2 className="mb-6 text-2xl sm:text-3xl font-semibold">{heading}</h2>

@@ -14,7 +14,7 @@ const WhoAmI = ({
   imageAlt = "placeholder hero",
 }: WhoAmIProps) => {
   return (
-    <section id="acceuil" className="pt-30 pb-20">
+    <section id="acceuil" className="pt-30 pb-20" style={{ scrollMarginTop: '100px' }}>
       <div
         className="
           mx-auto
@@ -29,11 +29,11 @@ const WhoAmI = ({
           lg:max-w-6xl
           xl:max-w-[80rem]
           2xl:max-w-[100rem]
-          mb-8
+          mb-2
         "
       >
         {/* Grille avec Titre + Texte + Image */}
-        <div className="grid gap-y-8 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-28 lg:items-start">
+        <div className="grid gap-y-8 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-28 lg:items-start mt-10 mb-12">
           {/* Colonne texte */}
           <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <h1 className="whoami-title text-3xl sm:text-4xl font-semibold text-center lg:text-left mb-6">
@@ -66,8 +66,8 @@ const WhoAmI = ({
             />
           </div>
         </div>
+        <Keywords />
       </div>
-      <Keywords />
     </section>
   );
 };
