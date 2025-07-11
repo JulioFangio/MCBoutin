@@ -74,18 +74,22 @@ const Navbar1 = ({
   }, []);
 
   return (
-    <section className="fixed py-4 w-full bg-transparent z-50">
+    <section className="fixed py-4 w-full bg-white/5 backdrop-blur-[0.5px] z-50">
       <div className="max-w-screen-2xl mx-auto px-4">
         {/* Desktop Navigation */}
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
-            </a>
+        <nav className="hidden justify-center lg:flex">
+          <div className="flex items-center justify-center w-full">
+            {/* Logo à gauche */}
+            <div className="absolute left-4 flex items-center gap-2">
+              <a href={logo.url} className="flex items-center gap-2">
+                <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                <span className="text-lg font-semibold tracking-tighter">
+                  {logo.title}
+                </span>
+              </a>
+            </div>
+            
+            {/* Menu centré */}
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
@@ -155,7 +159,7 @@ const renderMenuItem = (item: MenuItem, activeSection: string) => {
     <NavigationMenuItem key={item.title}>
       <a
         href={item.url}
-        className={`text-sm font-semibold px-2 transition-colors ${
+        className={`text-base font-semibold px-6 py-2 transition-colors ${
           isActive ? "text-[#f8c8d0]" : "text-black hover:text-[#f8c8d0]"
         }`}
       >
