@@ -38,7 +38,7 @@ const Navbar1 = ({
     url: "#",
     src: "/logo_mariechristineBOUTIN.png",
     alt: "logo",
-    title: "Marie - Christine Boutin",
+    title: "Thérapeute & Coach",
   },
   menu = [
     { title: "Accueil", url: "#acceuil" },
