@@ -12,9 +12,7 @@ interface ContactProps {
 
 const Contact = ({
     heading = "Me contacter",
-    phone = "02 40 XX XX XX",
-    email = "marie-christine.boutin@example.com", // Email de votre cliente
-    address = "134 Rue du Croissant, 44300 Nantes",
+    phone = "+33 6 99 34 55 41",
     mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2708.807!2d-1.553424084711!3d47.237856179189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4805ee8e5e5e5e5e%3A0x1234567890abcdef!2s134%20Rue%20du%20Croissant%2C%2044300%20Nantes!5e0!3m2!1sfr!2sfr!4v1625000000000!5m2!1sfr!2sfr"
 }: ContactProps) => {
     const [formData, setFormData] = useState({
