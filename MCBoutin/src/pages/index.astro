@@ -3,10 +3,12 @@ import BaseLayout from '../layouts/main.astro';
 import { WhoAmI } from '@/components/WhoAmI';
 import { Activities } from '@/components/Activities';
 import { Avis } from '@/components/Avis';
+import { Contact } from '@/components/Contact';
 ---
 
 <BaseLayout title="Accueil">
   <WhoAmI />
   <Activities client:load />
   <Avis client:load />
+  <Contact client:load />
 </BaseLayout>

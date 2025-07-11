@@ -44,7 +44,7 @@ const Navbar1 = ({
     { title: "Accueil", url: "#acceuil" },
     { title: "Activités", url: "#activities" },
     { title: "Avis", url: "#avis" },
-    { title: "Me contacter", url: "#" },
+    { title: "Me contacter", url: "#contact" },
   ],
 }: Navbar1Props) => {
   const [activeSection, setActiveSection] = useState<string>("");
@@ -89,11 +89,7 @@ const Navbar1 = ({
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
-                  {menu.map((item) =>
-                    item.title === "Me contacter"
-                      ? renderContactItem(item)
-                      : renderMenuItem(item, activeSection)
-                  )}
+                  {menu.map((item) => renderMenuItem(item, activeSection))}
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
@@ -165,18 +161,6 @@ const renderMenuItem = (item: MenuItem, activeSection: string) => {
       >
         {item.title}
       </a>
-    </NavigationMenuItem>
-  );
-};
-
-const renderContactItem = (item: MenuItem) => {
-  return (
-    <NavigationMenuItem key={item.title}>
-      <div className="relative group inline-block">
-        <button className="text-sm font-semibold px-2 text-black hover:text-[#f8c8d0] transition-colors">
-          {item.title}
-        </button>
-      </div>
     </NavigationMenuItem>
   );
 };

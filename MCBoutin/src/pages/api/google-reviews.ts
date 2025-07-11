@@ -60,8 +60,11 @@ export const GET: APIRoute = async ({ request, url }) => {
 
     const place = response.data;
 
-    // Formatage des avis
-    const formattedReviews = (place.reviews || []).map((review: any, index: number) => ({
+    // Formatage des avis (limité à 3 maximum)
+    const allReviews = place.reviews || [];
+    const limitedReviews = allReviews.slice(0, 3); // Limiter à 3 avis max
+    
+    const formattedReviews = limitedReviews.map((review: any, index: number) => ({
       id: `google-review-${index}`,
       author: review.authorAttribution?.displayName || 'Anonyme',
       rating: review.rating || 5,

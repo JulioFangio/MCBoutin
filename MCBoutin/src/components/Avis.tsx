@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import GooglePlacesService from "../services/googlePlaces";
 import "../styles/global.css";
@@ -76,7 +76,7 @@ const Avis = ({
         }
     ]
 }: AvisProps) => {
-    const [reviews, setReviews] = useState<Review[]>(fallbackReviews);
+    const [reviews, setReviews] = useState<Review[]>(fallbackReviews.slice(0, 3)); // Limiter à 3 avis
     const [businessInfo, setBusinessInfo] = useState<BusinessInfo>({
         name: businessName,
         address: businessAddress,
@@ -85,6 +85,19 @@ const Avis = ({
     });
     const [loading, setLoading] = useState(false);
     const [useGoogleReviews, setUseGoogleReviews] = useState(false);
+    const [expandedReviews, setExpandedReviews] = useState<{[key: string]: boolean}>({});
+
+    const toggleReview = (reviewId: string) => {
+        setExpandedReviews(prev => ({
+            ...prev,
+            [reviewId]: !prev[reviewId]
+        }));
+    };
+
+    const truncateText = (text: string, maxLength: number = 150) => {
+        if (text.length <= maxLength) return text;
+        return text.slice(0, maxLength) + '...';
+    };
 
     useEffect(() => {
         const loadGoogleReviews = async () => {
@@ -94,14 +107,18 @@ const Avis = ({
                 const result = await googlePlacesService.getReviews(businessName, businessAddress);
                 
                 if (result && result.reviews.length > 0) {
-                    setReviews(result.reviews);
+                    // Limiter à 3 avis maximum même si Google en retourne plus
+                    const limitedReviews = result.reviews.slice(0, 3);
+                    setReviews(limitedReviews);
                     setBusinessInfo(result.businessInfo);
                     setUseGoogleReviews(true);
                 } else {
-                    // Utilisation des avis de démonstration en fallback
+                    // Utilisation des avis de démonstration en fallback (limités à 3)
+                    setReviews(fallbackReviews.slice(0, 3));
                 }
             } catch (error) {
-                // Utilisation des avis de démonstration en cas d'erreur
+                // Utilisation des avis de démonstration en cas d'erreur (limités à 3)
+                setReviews(fallbackReviews.slice(0, 3));
             } finally {
                 setLoading(false);
             }
@@ -136,9 +153,7 @@ const Avis = ({
                 )}
 
                 {/* Informations entreprise et note globale */}
-                <div className="text-center mb-8">
-                    <h3 className="whoami-text text-lg font-semibold mb-2">{businessInfo.name}</h3>
-                    <p className="whoami-text text-sm text-gray-600 mb-4">{businessInfo.address}</p>
+                <div className="text-center mb-4">
                     <div className="flex items-center justify-center gap-2 mb-2">
                         {renderStars(Math.round(businessInfo.rating))}
                         <span className="whoami-text font-semibold text-lg ml-2">{businessInfo.rating.toFixed(1)}</span>
@@ -154,7 +169,11 @@ const Avis = ({
                     {reviews.map((review) => (
                         <div 
                             key={review.id}
-                            className="bg-white/10 backdrop-blur-none border-0 rounded-lg p-6 shadow-lg"
+                            className="bg-white/10 backdrop-blur-none border-0 rounded-lg p-6 shadow-lg flex flex-col"
+                            style={{ 
+                                minHeight: '280px',
+                                alignSelf: 'start' // Empêche l'étirement vertical dans la grille
+                            }}
                         >
                             {/* Header avec avatar et nom */}
                             <div className="flex items-center gap-3 mb-4">
@@ -180,10 +199,33 @@ const Avis = ({
                                 {renderStars(review.rating)}
                             </div>
 
-                            {/* Texte de l'avis */}
-                            <p className="whoami-text text-sm leading-relaxed">
-                                {review.text}
-                            </p>
+                            {/* Texte de l'avis - avec hauteur flexible */}
+                            <div className="whoami-text text-sm leading-relaxed flex-1">
+                                {review.text.length > 150 ? (
+                                    <div>
+                                        <p>
+                                            {expandedReviews[review.id] 
+                                                ? review.text 
+                                                : truncateText(review.text, 150)
+                                            }
+                                        </p>
+                                        <button
+                                            onClick={() => toggleReview(review.id)}
+                                            className="whoami-text flex items-center text-black cursor-pointer hover:underline bg-transparent border-none focus:outline-none text-xs font-medium mt-2 transition-colors duration-200"
+                                            style={{ 
+                                                textShadow: '1px 1px 2px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8)',
+                                                zIndex: 10,
+                                                pointerEvents: 'auto'
+                                            }}
+                                        >
+                                            {expandedReviews[review.id] ? 'Lire moins' : 'Lire plus'}
+                                            <ArrowRight className={`ml-2 size-4 ${expandedReviews[review.id] ? 'rotate-180' : ''}`} />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <p>{review.text}</p>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -197,7 +239,8 @@ const Avis = ({
                         href="https://www.google.com/search?q=Th%C3%A9rapie+individuelle+et+familiale+-+Marie-Christine+BOUTIN+134+Rue+du+Croissant+44300+Nantes"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="whoami-text inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 text-sm font-medium"
+                        className="whoami-text inline-flex items-center gap-2 text-black px-6 py-3 rounded-lg transition-colors duration-200 text-sm font-medium hover:opacity-80"
+                        style={{ backgroundColor: '#f8c8d0' }}
                     >
                         Laisser un avis Google
                     </a>
