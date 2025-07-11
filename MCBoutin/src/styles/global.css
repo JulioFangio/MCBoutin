@@ -220,3 +220,30 @@ hover:flex
 html {
   scroll-behavior: smooth;
 }
+
+/* Scrollbar personnalisée en rose */
+/* Pour les navigateurs Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f8c8d0;
+  border-radius: 6px;
+  border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f5b5c4;
+}
+
+/* Pour Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #f8c8d0 #f1f1f1;
+}
