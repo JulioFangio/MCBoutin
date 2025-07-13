@@ -8,7 +8,8 @@ const __dirname = dirname(__filename);
 const images = [
   'forme1.png',
   'forme2.png',
-  'forme3.png'
+  'forme3.png',
+  'forme4.png'
 ];
 
 const publicDir = join(__dirname, 'public');

@@ -42,7 +42,7 @@ const Navbar1 = ({
   },
   menu = [
     { title: "Accueil", url: "#acceuil" },
-    { title: "Activités", url: "#activities" },
+    { title: "Activités", url: "#activitié" },
     { title: "Avis", url: "#avis" },
     { title: "Me contacter", url: "#contact" },
   ],

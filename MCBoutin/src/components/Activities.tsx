@@ -107,8 +107,8 @@ const Activities = ({
     };
 
     return (
-        <section id="activities" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
-            <div className="container mx-auto flex flex-col gap-8 px-4 lg:px-16">
+        <section id="activitié" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
+            <div className="container mx-auto flex flex-col gap-8 px-4 lg:px-16 mb-8">
                 <div className="text-center">
                     <h2 className="mb-6 text-2xl sm:text-3xl font-semibold">{heading}</h2>
                 </div>
@@ -119,6 +119,9 @@ const Activities = ({
                         </p>
                         <p>
                             Je vous propose un accompagnement individuel ou familial selon votre rythme et votre besoin. Ma conviction : chacun peut (re)trouver le fil de soi, renouer avec ses ressources profondes, restaurer ses liens et oser le changement.
+                        </p>
+                        <p className="font-semibold italic">
+                            "Oser le changement, retrouver l’élan."
                         </p>
                     </div>
                     <div className="whoami-text text-sm sm:text-base leading-relaxed space-y-4">

@@ -82,7 +82,7 @@ const Contact = ({
                     <div className="space-y-8 flex flex-col">
                         {/* Informations de contact */}
                         <div className="space-y-4">
-                            <h3 className="whoami-text text-xl font-semibold mb-4">Informations de contact</h3>
+                            <h3 className="whoami-text text-xl font-semibold mb-4">Pour prendre RDV</h3>
                             
                             {/* Téléphone */}
                             <div className="flex items-center gap-4">

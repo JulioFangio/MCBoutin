@@ -38,14 +38,16 @@ export default function Keywords() {
 
         {/* Liste défilante */}
         <div className="flex animate-scroll hover:animate-paused gap-12 md:gap-20 w-max whitespace-nowrap mx-auto bg-transparent">
-          {[...keywords, ...keywords, ...keywords].map((tech, idx) => (
-            <span
-              key={idx}
-              className="text-md font-medium text-[var(--white-icon)] bg-transparent"
-            >
-              {tech.charAt(0).toUpperCase() + tech.slice(1)}
-            </span>
-          ))}
+          {[...keywords, ...keywords, ...keywords].map((tech, idx) => {
+            return (
+              <span
+                key={idx}
+                className="text-md font-medium bg-transparent text-black"
+              >
+                {tech.charAt(0).toUpperCase() + tech.slice(1)}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>
