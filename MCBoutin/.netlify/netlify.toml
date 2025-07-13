@@ -6,6 +6,8 @@ headers = []
 
 [forms.settings]
 notification_email = "duvalgirardjules@gmail.com"
+enabled = true
+subject_prefix = "[MCBoutin Contact]"
 
 [functions]
 

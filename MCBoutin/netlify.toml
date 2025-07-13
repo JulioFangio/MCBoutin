@@ -16,3 +16,7 @@
   [forms.settings]
     # Email de notification par défaut
     notification_email = "duvalgirardjules@gmail.com"
+    # Activation des notifications
+    enabled = true
+    # Sujet personnalisé pour les notifications
+    subject_prefix = "[MCBoutin Contact]"
