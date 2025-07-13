@@ -9,3 +9,10 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Configuration des formulaires
+[forms]
+  # Configuration par défaut pour tous les formulaires
+  [forms.settings]
+    # Email de notification par défaut
+    notification_email = "duvalgirardjules@gmail.com"
