@@ -136,11 +136,12 @@ const Activities = ({
                         </ul>
                     </div>
                 </div>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                <div className="grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
                     {posts.map((post) => {
                         const isFlipped = flippedCards.includes(post.id);
                         return (
                             <div key={post.id} 
+                                 className="mb-4 sm:mb-6"
                                  style={{ 
                                      perspective: '1000px', 
                                      minHeight: '400px',
