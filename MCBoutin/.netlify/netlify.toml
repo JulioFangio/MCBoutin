@@ -2,6 +2,11 @@ redirectsOrigin = "config"
 plugins = []
 headers = []
 
+[forms]
+
+[forms.settings]
+notification_email = "duvalgirardjules@gmail.com"
+
 [functions]
 
 [functions."*"]
