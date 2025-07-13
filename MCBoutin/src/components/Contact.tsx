@@ -62,7 +62,6 @@ const Contact = ({
             }
 
         } catch (error) {
-            console.error('Erreur Netlify Forms:', error);
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
