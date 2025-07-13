@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 export default function IntroScreen() {
   const [visible, setVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   function handleStart() {
     setIsFading(true);
@@ -27,14 +28,27 @@ export default function IntroScreen() {
       }`}
     >
       <video
-        src="/GIFMCB.mp4"
+        src="/GIFMCB-optimized.mp4"
         autoPlay
         loop
         muted
         playsInline
+        preload="metadata"
         className="absolute top-0 left-0 w-full h-full object-cover"
         draggable={false}
+        onLoadStart={() => console.log('Video loading started')}
+        onCanPlay={() => {
+          console.log('Video can start playing');
+          setVideoLoaded(true);
+        }}
       />
+      
+      {/* Indicateur de chargement */}
+      {!videoLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black">
+          <div className="text-white text-lg">Chargement...</div>
+        </div>
+      )}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <button
           onClick={handleStart}
