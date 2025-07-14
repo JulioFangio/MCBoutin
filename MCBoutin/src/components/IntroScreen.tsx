@@ -71,9 +71,20 @@ export default function IntroScreen() {
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
             videoLoaded ? "opacity-100" : "opacity-0"
           }`}
+          style={{ 
+            animationPlayState: 'running',
+            // Ralentit la vidéo à 40% de la vitesse normale pour un effet plus zen
+            transform: 'scale(1)',
+            filter: 'none'
+          }}
           draggable={false}
           onCanPlay={() => {
             setVideoLoaded(true);
+          }}
+          onLoadedData={(e) => {
+            // Ralentit la vitesse de lecture à 0.4 (40% de la vitesse normale)
+            const video = e.target as HTMLVideoElement;
+            video.playbackRate = 0.4;
           }}
           onLoadStart={() => {
             // Début du chargement vidéo

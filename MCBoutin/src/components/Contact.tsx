@@ -74,29 +74,48 @@ const Contact = ({
                 {/* Titre */}
                 <div className="text-center mb-12">
                     <h2 className="text-2xl sm:text-3xl font-semibold text-black">{heading}</h2>
+                    
+                    {/* Paragraphe explicatif */}
+                    <div className="mt-8 max-w-4xl mx-auto">
+                        <p className="whoami-text text-black leading-relaxed mb-8 text-base">
+                            Pour prendre rendez-vous, n'hésitez pas à me contacter soit par téléphone soit via le formulaire ci-dessous. 
+                            Je suis là pour répondre à toutes vos questions et vous accompagner dans votre démarche en toute bienveillance.
+                        </p>
+                        
+                        {/* Tarification */}
+                        <div className="text-center">
+                            <h3 className="whoami-text text-black font-semibold text-lg mb-4">Tarification</h3>
+                            <div className="flex flex-wrap justify-center gap-8 whoami-text text-black text-base">
+                                <div className="text-center">
+                                    <span className="font-semibold">Thérapie individuelle :</span> 65€
+                                </div>
+                                <div className="text-center">
+                                    <span className="font-semibold">Thérapie couple et famille :</span> 80€
+                                </div>
+                                <div className="text-center">
+                                    <span className="font-semibold">Coaching :</span> Tarification sur devis uniquement
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+                <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Colonne gauche - Informations de contact et formulaire */}
                     <div className="space-y-8 flex flex-col">
-                        {/* Informations de contact */}
-                        <div className="space-y-4">
-                            <h3 className="whoami-text text-xl font-semibold mb-4">Pour prendre RDV</h3>
-                            
-                            {/* Téléphone */}
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f8c8d0' }}>
-                                    <Phone className="w-6 h-6 text-black" />
-                                </div>
-                                <div>
-                                    <p className="whoami-text font-semibold">Téléphone</p>
-                                    <a 
-                                        href={`tel:${phone.replace(/\s/g, '')}`}
-                                        className="whoami-text text-gray-600 hover:text-black transition-colors"
-                                    >
-                                        {phone}
-                                    </a>
-                                </div>
+                        {/* Téléphone */}
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f8c8d0' }}>
+                                <Phone className="w-6 h-6 text-black" />
+                            </div>
+                            <div>
+                                <p className="whoami-text font-semibold">Téléphone</p>
+                                <a 
+                                    href={`tel:${phone.replace(/\s/g, '')}`}
+                                    className="whoami-text text-gray-600 hover:text-black transition-colors"
+                                >
+                                    {phone}
+                                </a>
                             </div>
                         </div>
 
@@ -221,16 +240,16 @@ const Contact = ({
                         </div>
                     </div>
 
-                    {/* Colonne droite - Carte */}
-                    <div className="h-full">
-                        <div className="bg-white/10 backdrop-blur-none border-0 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
-                            <div className="p-6">
+                    {/* Colonne droite - Carte alignée avec le formulaire seulement */}
+                    <div className="h-full flex items-end">
+                        <div className="bg-white/10 backdrop-blur-none border-0 rounded-lg overflow-hidden shadow-lg w-full flex flex-col" style={{ height: '500px' }}>
+                            <div className="p-6 flex-shrink-0">
                                 <h3 className="whoami-text text-lg font-semibold mb-4 flex items-center gap-2">
                                     <MapPin className="w-5 h-5" />
                                     Où me trouver
                                 </h3>
                             </div>
-                            <div className="relative w-full flex-1 min-h-[500px]">
+                            <div className="relative w-full flex-1">
                                 <iframe
                                     src={mapUrl}
                                     width="100%"

@@ -27,7 +27,7 @@ interface ActivitiesProps {
 }
 
 const Activities = ({
-    heading = "Mon activité",
+    heading = "Mes accompagnements",
     posts = [
         {
             id: "post-1",
@@ -107,7 +107,7 @@ const Activities = ({
     };
 
     return (
-        <section id="activitié" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
+        <section id="accompagnement" className="pt-0 pb-20" style={{ scrollMarginTop: '100px' }}>
             <div className="container mx-auto flex flex-col gap-8 px-4 lg:px-16 mb-8">
                 <div className="text-center">
                     <h2 className="mb-6 text-2xl sm:text-3xl font-semibold">{heading}</h2>
