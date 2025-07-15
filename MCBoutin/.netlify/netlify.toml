@@ -36,6 +36,18 @@ NODE_VERSION = "20"
 [build.services]
 
 [[redirects]]
+from = "https://mcboutin.netlify.app/*"
+to = "https://www.mcboutin.fr/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200.0
