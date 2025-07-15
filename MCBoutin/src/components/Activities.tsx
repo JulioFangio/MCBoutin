@@ -42,7 +42,7 @@ const Activities = ({
                     "Relations conflictuelles, distantes ou coupées",
                     "Perte de sens, stress, anxiété, charge mentale",
                     "Séparation, deuil, recomposition familiale",
-                    "Troubles émotionnels ou psychosomatiques"
+                    "Troubles émotionnels"
                 ],
                 objectives: [
                     "Retisser du lien, restaurer la communication",
