@@ -2,6 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# Redirections pour le domaine personnalisé
+[[redirects]]
+  from = "https://mcboutin.netlify.app/*"
+  to = "https://www.mcboutin.fr/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
