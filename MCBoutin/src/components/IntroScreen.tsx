@@ -73,7 +73,7 @@ export default function IntroScreen() {
           }`}
           style={{ 
             animationPlayState: 'running',
-            // Ralentit la vidéo à 40% de la vitesse normale pour un effet plus zen
+            // Ralentit la vidéo à 15% de la vitesse normale pour un effet plus zen
             transform: 'scale(1)',
             filter: 'none'
           }}
@@ -82,9 +82,9 @@ export default function IntroScreen() {
             setVideoLoaded(true);
           }}
           onLoadedData={(e) => {
-            // Ralentit la vitesse de lecture à 0.4 (40% de la vitesse normale)
+            // Ralentit la vitesse de lecture à 0.15 (15% de la vitesse normale)
             const video = e.target as HTMLVideoElement;
-            video.playbackRate = 0.4;
+            video.playbackRate = 0.15;
           }}
           onLoadStart={() => {
             // Début du chargement vidéo

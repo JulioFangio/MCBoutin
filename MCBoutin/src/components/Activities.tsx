@@ -223,7 +223,7 @@ const Activities = ({
                                     </div>
 
                                     {/* Face arrière */}
-                                    <div style={{
+                                    <div className="flip-card-back" style={{
                                         position: 'absolute',
                                         width: '100%',
                                         height: 'auto',

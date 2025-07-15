@@ -90,7 +90,7 @@ const Contact = ({
                                     <span className="font-semibold">Thérapie individuelle :</span> 65€
                                 </div>
                                 <div className="text-center">
-                                    <span className="font-semibold">Thérapie couple et famille :</span> 80€
+                                    <span className="font-semibold">Thérapie couple et famille :</span> 85€
                                 </div>
                                 <div className="text-center">
                                     <span className="font-semibold">Coaching :</span> Tarification sur devis uniquement

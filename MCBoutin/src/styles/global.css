@@ -207,6 +207,11 @@ hover:flex
   z-index: 1;
 }
 
+/* Override pour les faces arrière - seules les listes à puces sont alignées à gauche */
+.flip-card-back .whoami-text li {
+  text-align: left !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .flip-card-container {
