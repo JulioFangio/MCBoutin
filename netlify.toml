@@ -1,5 +1,5 @@
 [build]
-  command = "cd MCBoutin && npm run build"
+  command = "cd MCBoutin && npm install && npm run build"
   publish = "MCBoutin/dist"
 
 # Redirections pour le domaine personnalisé
