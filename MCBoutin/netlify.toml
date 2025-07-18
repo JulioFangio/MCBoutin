@@ -5,7 +5,7 @@
 # Redirections pour le domaine personnalisé
 [[redirects]]
   from = "https://mcboutin.netlify.app/*"
-  to = "https://www.mcboutin.fr/:splat"
+  to = "https://mcboutin.fr/:splat"
   status = 301
   force = true
 
