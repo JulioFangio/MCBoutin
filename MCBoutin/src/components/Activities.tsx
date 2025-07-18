@@ -141,18 +141,20 @@ const Activities = ({
                         const isFlipped = flippedCards.includes(post.id);
                         return (
                             <div key={post.id} 
-                                 className="mb-4 sm:mb-6"
+                                 className="mb-6 sm:mb-8 md:mb-4 lg:mb-6"
                                  style={{ 
                                      perspective: '1000px', 
-                                     minHeight: '400px',
-                                     width: '100%'
+                                     minHeight: isFlipped ? '500px' : '400px',
+                                     width: '100%',
+                                     // Ajout d'une marge supplémentaire sur mobile quand la carte est retournée
+                                     marginBottom: isFlipped ? '2rem' : undefined
                                  }}>
                                 <div 
                                     style={{
                                         position: 'relative',
                                         width: '100%',
                                         height: 'auto',
-                                        minHeight: '400px',
+                                        minHeight: isFlipped ? '500px' : '400px',
                                         textAlign: 'center',
                                         transition: 'transform 0.6s ease-in-out',
                                         transformStyle: 'preserve-3d',
@@ -227,7 +229,7 @@ const Activities = ({
                                         position: 'absolute',
                                         width: '100%',
                                         height: 'auto',
-                                        minHeight: '400px',
+                                        minHeight: '500px',
                                         backfaceVisibility: 'hidden',
                                         borderRadius: '0.75rem',
                                         top: 0,
@@ -235,30 +237,30 @@ const Activities = ({
                                         transform: 'rotateY(180deg)',
                                         zIndex: 1
                                     }}>
-                                        <Card className="border-0 shadow-lg bg-white/10 backdrop-blur-none h-full w-full min-h-[400px]">
-                                            <div className="flex flex-col h-full p-6 min-h-[400px]">
+                                        <Card className="border-0 shadow-lg bg-white/10 backdrop-blur-none h-full w-full min-h-[500px]">
+                                            <div className="flex flex-col h-full p-4 sm:p-6 min-h-[500px]">
                                                 {/* Contenu détaillé en haut */}
-                                                <div className="flex-1 space-y-4">
-                                                    <div className="whoami-text text-sm space-y-3">
+                                                <div className="flex-1 space-y-3 sm:space-y-4">
+                                                    <div className="whoami-text text-xs sm:text-sm space-y-2 sm:space-y-3">
                                                         <p className="leading-relaxed">{post.content.intro}</p>
                                                         {post.content.question && (
                                                             <p className="leading-relaxed">{post.content.question}</p>
                                                         )}
                                                         
-                                                        <div className="space-y-2">
-                                                            <h4 className="font-semibold">Pour qui ?</h4>
+                                                        <div className="space-y-1 sm:space-y-2">
+                                                            <h4 className="font-semibold text-sm">Pour qui ?</h4>
                                                             <ul className="list-disc list-inside space-y-1">
                                                                 {post.content.forWho.map((item, index) => (
-                                                                    <li key={index} className="text-sm">{item}</li>
+                                                                    <li key={index} className="text-xs sm:text-sm">{item}</li>
                                                                 ))}
                                                             </ul>
                                                         </div>
 
-                                                        <div className="space-y-2">
-                                                            <h4 className="font-semibold">Objectifs :</h4>
+                                                        <div className="space-y-1 sm:space-y-2">
+                                                            <h4 className="font-semibold text-sm">Objectifs :</h4>
                                                             <ul className="list-disc list-inside space-y-1">
                                                                 {post.content.objectives.map((item, index) => (
-                                                                    <li key={index} className="text-sm">{item}</li>
+                                                                    <li key={index} className="text-xs sm:text-sm">{item}</li>
                                                                 ))}
                                                             </ul>
                                                         </div>
