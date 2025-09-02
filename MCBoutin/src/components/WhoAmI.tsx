@@ -10,8 +10,8 @@ interface WhoAmIProps {
 
 const WhoAmI = ({
   title = "Qui je suis",
-  imageSrc = "/ImageIntro.jpg",
-  imageAlt = "placeholder hero",
+  imageSrc = "/PhotoCouleur.jpg",
+  imageAlt = "/ImageIntro.jpg",
 }: WhoAmIProps) => {
   return (
     <section id="acceuil" className="pt-17 pb-20" style={{ scrollMarginTop: '100px' }}>
@@ -80,7 +80,7 @@ const WhoAmI = ({
                 alt={imageAlt}
                 loading="lazy"
                 decoding="async"
-                className="whoami-image w-full object-cover rounded-md max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[320px] 2xl:max-w-[400px]"
+                className="whoami-image w-full object-cover rounded-md max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[440px] xl:max-w-[360px] 2xl:max-w-[440px]"
               />
             </div>
           </div>
