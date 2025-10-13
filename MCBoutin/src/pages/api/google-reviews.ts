@@ -9,8 +9,16 @@ export const GET: APIRoute = async ({ request, url }) => {
   const fields = import.meta.env.FIELDS;
   const languageCode = import.meta.env.LANGUAGE_CODE;
 
+  console.log('🔧 Configuration API:', {
+    hasApiKey: !!apiKey,
+    hasPlaceId: !!placeId,
+    fields,
+    languageCode
+  });
+
   // Vérifications
   if (!apiKey) {
+    console.error('❌ API key manquante');
     return new Response(
       JSON.stringify({ error: 'API key not configured' }),
       { 
@@ -21,6 +29,7 @@ export const GET: APIRoute = async ({ request, url }) => {
   }
 
   if (!placeId) {
+    console.error('❌ Place ID manquant');
     return new Response(
       JSON.stringify({ error: 'Place ID not configured' }),
       { 
@@ -33,6 +42,15 @@ export const GET: APIRoute = async ({ request, url }) => {
   try {
     // Appel à l'API Places (NEW) avec le PLACE_ID
     const placeUrl = `https://places.googleapis.com/v1/places/${placeId}`;
+    
+    console.log('� Appel API Google Places:', placeUrl);
+    console.log('�🔍 Debug API call:', {
+      url: placeUrl,
+      hasApiKey: !!apiKey,
+      apiKeyPrefix: apiKey ? apiKey.substring(0, 10) + '...' : 'undefined',
+      placeId,
+      fields: fields || 'displayName,rating,userRatingCount,reviews,formattedAddress'
+    });
     
     const response = await axios.get(placeUrl, {
       headers: {
@@ -94,13 +112,27 @@ export const GET: APIRoute = async ({ request, url }) => {
     );
 
   } catch (error) {
+    console.error('❌ API Error:', error);
+    
+    let errorMessage = 'Unknown error';
+    let statusCode = 500;
+    
+    if (axios.isAxiosError(error)) {
+      errorMessage = `Google API Error: ${error.response?.status} - ${error.response?.statusText}`;
+      statusCode = error.response?.status || 500;
+      console.error('📋 Google API Response:', error.response?.data);
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    
     return new Response(
       JSON.stringify({ 
         error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: errorMessage,
+        details: axios.isAxiosError(error) ? error.response?.data : null
       }),
       { 
-        status: 500,
+        status: statusCode,
         headers: { 'Content-Type': 'application/json' }
       }
     );

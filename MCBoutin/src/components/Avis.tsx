@@ -101,24 +101,34 @@ const Avis = ({
 
     useEffect(() => {
         const loadGoogleReviews = async () => {
+            console.log('🔄 Début du chargement des avis Google...');
             setLoading(true);
             try {
                 const googlePlacesService = new GooglePlacesService();
+                console.log('📞 Appel de l\'API Google Places...');
                 const result = await googlePlacesService.getReviews(businessName, businessAddress);
                 
+                console.log('📋 Réponse API reçue :', result);
+                
+                // PRIORITÉ ABSOLUE aux avis Google - même s'il n'y en a qu'un seul
                 if (result && result.reviews.length > 0) {
                     // Limiter à 3 avis maximum même si Google en retourne plus
                     const limitedReviews = result.reviews.slice(0, 3);
                     setReviews(limitedReviews);
                     setBusinessInfo(result.businessInfo);
                     setUseGoogleReviews(true);
+                    console.log('✅ Avis Google chargés :', limitedReviews.length, 'avis');
                 } else {
-                    // Utilisation des avis de démonstration en fallback (limités à 3)
+                    // Utilisation des avis de démonstration SEULEMENT si aucun avis Google
                     setReviews(fallbackReviews.slice(0, 3));
+                    setUseGoogleReviews(false);
+                    console.log('⚠️ Aucun avis Google trouvé, utilisation des avis factices');
                 }
             } catch (error) {
                 // Utilisation des avis de démonstration en cas d'erreur (limités à 3)
                 setReviews(fallbackReviews.slice(0, 3));
+                setUseGoogleReviews(false);
+                console.error('❌ Erreur lors du chargement des avis Google :', error);
             } finally {
                 setLoading(false);
             }
@@ -160,7 +170,7 @@ const Avis = ({
                         <span className="whoami-text text-sm text-gray-600">({businessInfo.totalReviews} avis)</span>
                     </div>
                     <p className="whoami-text text-sm text-gray-600">
-                        {useGoogleReviews ? "Avis Google" : "Avis clients"}
+                        {useGoogleReviews ? "✅ Avis Google vérifiés" : "⭐ Témoignages clients"}
                     </p>
                 </div>
 
@@ -236,7 +246,7 @@ const Avis = ({
                         Vous souhaitez laisser un avis sur votre expérience ?
                     </p>
                     <a 
-                        href="https://www.google.com/search?q=Th%C3%A9rapie+individuelle+et+familiale+-+Marie-Christine+BOUTIN+134+Rue+du+Croissant+44300+Nantes"
+                        href="https://g.page/r/CRPUEfRPRaJ_EBM/review"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="whoami-text inline-flex items-center gap-2 text-black px-6 py-3 rounded-lg transition-colors duration-200 text-sm font-medium hover:opacity-80"
