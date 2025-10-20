@@ -79,9 +79,17 @@ export const GET: APIRoute = async ({ request, url }) => {
 
     const place = response.data;
 
-    // Formatage des avis (limité à 3 maximum)
+    // Formatage des avis : tri par date (plus récents en premier) puis limitation à 3
     const allReviews = place.reviews || [];
-    const limitedReviews = allReviews.slice(0, 3); // Limiter à 3 avis max
+    
+    // Tri par date de publication (plus récents en premier)
+    const sortedReviews = allReviews.sort((a: any, b: any) => {
+      const dateA = new Date(a.publishTime || '1900-01-01');
+      const dateB = new Date(b.publishTime || '1900-01-01');
+      return dateB.getTime() - dateA.getTime(); // Ordre décroissant (plus récent en premier)
+    });
+    
+    const limitedReviews = sortedReviews.slice(0, 3); // Limiter aux 3 plus récents
     
     const formattedReviews = limitedReviews.map((review: any, index: number) => ({
       id: `google-review-${index}`,
