@@ -56,7 +56,8 @@ export const GET: APIRoute = async ({ request, url }) => {
       headers: {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': apiKey,
-        'X-Goog-FieldMask': fields || 'displayName,rating,userRatingCount,reviews,formattedAddress'
+        'X-Goog-FieldMask': fields || 'displayName,rating,userRatingCount,reviews,formattedAddress',
+        'Referer': 'https://mcboutin.fr/'
       },
       params: {
         languageCode: languageCode || 'fr'
